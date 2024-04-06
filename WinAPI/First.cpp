@@ -2,7 +2,7 @@
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE gInstance;
-LPCTSTR lpszClass = TEXT("First");
+LPCTSTR lpszClass = TEXT("WinAPI");
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam, int nCmdShow)
 {
@@ -47,13 +47,43 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    HDC hdc;
+    PAINTSTRUCT ps;
+    RECT rt = { 400, 500, 400, 300 };
+    const TCHAR* str = TEXT("´ÔÀº °¬½À´Ï´Ù. ¾Æ¾Æ »ç¶ûÇÏ´Â ³ªÀÇ ´ÔÀº °¬½À´Ï´Ù. Çª¸¥ »êºûÀ»"
+        "±úÄ¡°í ´ÜÇ³³ª¹« ½£À» ÇâÇÏ¿© ³­ ÀÛÀº ±æÀ» °É¾î¼­ Â÷¸¶ ¶³Ä¡°í °¬½À´Ï´Ù."
+        "È²±ÝÀÇ ²É°°ÀÌ ±»°í ºû³ª´ø ¿¾ ¸Í¼¼´Â Â÷µðÂù Æ¼²øÀÌ µÇ¾î ÇÑ¼ûÀÇ ¹ÌÇ³¿¡ "
+        "³¯¾Æ°¬½À´Ï´Ù.");
+
     switch (msg)
     {
     case WM_DESTROY: // alt + f4
         PostQuitMessage(0); // generates WM_QUIT msg
         return 0;
     case WM_LBUTTONDOWN:
-        MessageBeep(0);
+        // MessageBeep(0);
+        hdc = GetDC(hWnd);
+        {
+            TextOut(hdc, 100, 100, TEXT("Beautiful Korea"), 15); // oneline. does not recognize null-terminate str
+        }
+        ReleaseDC(hWnd, hdc);
+        return 0;
+    case WM_PAINT: // when part of window is validated (from obscure or resize)
+        hdc = BeginPaint(hWnd, &ps); // valid only within WM_PAINT
+        {
+            SetTextAlign(hdc, TA_CENTER); // default is (TOP | LEFT)
+            TextOut(hdc, 200, 60, TEXT("Beautiful Korea"), 15); // 15 = strlen
+            TextOut(hdc, 200, 80, TEXT("is My"), 5);
+            TextOut(hdc, 200, 100, TEXT("Lovely Home Country"), 19);
+
+            SetTextAlign(hdc, TA_UPDATECP); // write + update on CP (current point). ignores x,y param in TextOut
+            TextOut(hdc, 300, 60, TEXT("One "), 4); // 15 = strlen
+            TextOut(hdc, 300, 80, TEXT("Two "), 4);
+            TextOut(hdc, 300, 100, TEXT("Three"), 5);
+
+            DrawText(hdc, str, -1, &rt, DT_CENTER | DT_WORDBREAK);
+        }
+        EndPaint(hWnd, &ps);
         return 0;
     }
 
