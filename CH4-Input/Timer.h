@@ -12,11 +12,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
     switch (msg)
     {
-    case WM_DESTROY: // alt + f4
-        KillTimer(hWnd, 1); // (HWND, id). good to kill because timer is system resource
-        KillTimer(hWnd, 2);
-        PostQuitMessage(0); // generates WM_QUIT msg
-        return 0;
     case WM_CREATE:
         SetTimer(hWnd, 1, 1000, NULL); // timer id = 1, WM_TIMER every 1000 (1 sec), optional callback func
         SetTimer(hWnd, 2, 5000, NULL);
@@ -41,6 +36,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             TextOut(hdc, 100, 100, sTime, lstrlen(sTime));
         }
         EndPaint(hWnd, &ps);
+        return 0;
+    case WM_DESTROY: // alt + f4
+        KillTimer(hWnd, 1); // (HWND, id). good to kill because timer is system resource
+        KillTimer(hWnd, 2);
+        PostQuitMessage(0); // generates WM_QUIT msg
         return 0;
     }
 
