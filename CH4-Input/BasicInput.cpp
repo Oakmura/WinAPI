@@ -18,7 +18,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam
     wndClass.lpfnWndProc = WndProc;
     wndClass.lpszClassName = lpszClass;
     wndClass.lpszMenuName = NULL; // menu for all subsequent child windows
-    wndClass.style = CS_HREDRAW | CS_VREDRAW;
+    wndClass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 
     RegisterClass(&wndClass);
 

@@ -34,6 +34,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             }
             ReleaseDC(hWnd, hdc);
         }
+        return 0;
+    case WM_LBUTTONDBLCLK:
+        InvalidateRect(hWnd, NULL, TRUE);
+        return 0;
     }
 
     return DefWindowProc(hWnd, msg, wParam, lParam); // handles resize, move ...
