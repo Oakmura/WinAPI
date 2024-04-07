@@ -29,7 +29,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             Ellipse(hdc, 20, 20, 150, 150);
 
             // red pen + null brush
-            SelectObject(hdc, GetStockObject(NULL_PEN));
+            SelectObject(hdc, GetStockObject(NULL_BRUSH));
             Ellipse(hdc, 220, 20, 350, 150);
 
             // null pen + green brush
