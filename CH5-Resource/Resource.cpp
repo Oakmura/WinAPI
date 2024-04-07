@@ -3,6 +3,7 @@
 
 HINSTANCE gInstance;
 LPCTSTR lpszClass = TEXT("WinAPI");
+HACCEL hAccel;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam, int nCmdShow)
 {
@@ -36,10 +37,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam
     ShowWindow(hWnd, nCmdShow);
 
     MSG msg;
+    hAccel = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDR_ACCELERATOR1));
     while (GetMessage(&msg, NULL, 0, 0)) // gets msg from Queue. returns false on WM_QUIT
     {
-        TranslateMessage(&msg); // translates WM_KEYDOWN -> WM_CHAR
-        DispatchMessage(&msg); // dispatches msg to WndProc
+        if (!TranslateAccelerator(hWnd, hAccel, &msg)) // converts keyboard msg to WM_COMMAND if input sequence in accel table
+        {
+            TranslateMessage(&msg); // translates WM_KEYDOWN -> WM_CHAR
+            DispatchMessage(&msg); // dispatches msg to WndProc
+        }
     }
 
     return (int)msg.wParam;
