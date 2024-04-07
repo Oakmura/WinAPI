@@ -42,5 +42,5 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         return 0;
     }
 
-    return DefWindowProc(hWnd, msg, wParam, lParam); // handles resize, move ...
+    return DefWindowProc(hWnd, msg, wParam, lParam); // handles resize, move, boundary check ...
 }
