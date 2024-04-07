@@ -13,7 +13,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     switch (msg)
     {
     case WM_CREATE:
-        SetTimer(hWnd, 1, 1000, NULL); // timer id = 1, WM_TIMER every 1000 (1 sec), optional callback func
+        SetTimer(hWnd, 1, 1000, NULL); // timer id = 1, WM_TIMER every 1000 (1 sec), optional callback func (overrides WM_TIMER call)
         SetTimer(hWnd, 2, 5000, NULL);
         SendMessage(hWnd, WM_TIMER, 1, 0); // (msg, timer id). send msg to display time right after timer creation
         return 0;

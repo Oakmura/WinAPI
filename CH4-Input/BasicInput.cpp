@@ -1,7 +1,10 @@
 // #include "Keyboard.h"
 // #include "Mouse.h"
 // #include "Timer.h"
-#include "BackgroundTimer.h"
+// #include "BackgroundTimer.h"
+// #include "CallbackTimer.h"
+// #include "OneTimeTimer.h"
+#include "ClientRect.h"
 
 HINSTANCE gInstance;
 LPCTSTR lpszClass = TEXT("WinAPI");
