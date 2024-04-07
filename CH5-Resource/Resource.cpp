@@ -12,8 +12,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR CmdParam
     wndClass.cbClsExtra = 0; // windows reserved space for internal use
     wndClass.cbWndExtra = 0; // windows reserved space for internal use
     wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); // CreateSolidBrush(RGB(0, 0, 255)). CreateHatchBrush(HS_DIAGCROSS, RGB(255, 0, 0)).
-    wndClass.hCursor = LoadCursor(NULL, IDC_ARROW); // use default if NULL
-    wndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    wndClass.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1)); // use default if NULL
+    wndClass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
     wndClass.hInstance = hInstance;
     wndClass.lpfnWndProc = WndProc;
     wndClass.lpszClassName = lpszClass;
