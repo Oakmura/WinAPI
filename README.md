@@ -1,4 +1,4 @@
 # WinAPI
 
 # Snapshot as of now
-![TextOut](https://github.com/Oakmura/WinAPI/blob/main/Screenshots/TransparentStockObject.png)
+![TextOut](https://github.com/Oakmura/WinAPI/blob/main/Screenshots/TransparentGdiObject.png)
