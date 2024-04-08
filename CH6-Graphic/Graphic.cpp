@@ -1,6 +1,9 @@
 // #include "Pen.h"
 // #include "Brush.h"
-#include "TransparentObject.h"
+// #include "TransparentObject.h"
+// #include "RenderingOP.h"
+// #include "Bitmap.h"
+#include "Font.h"
 
 HINSTANCE gInstance;
 HWND hWndMain;
